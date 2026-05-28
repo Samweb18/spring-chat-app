@@ -29,7 +29,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(@NonNull StompEndpointRegistry registry) {
         registry.addEndpoint("/chat")// connection establishment
-                .setAllowedOrigins("https://spring-chat-6vbrxvjvd-sambhavkushwaha12-35255-projects.vercel.app")
+                .setAllowedOriginPatterns("https://*.vercel.app")
                 .withSockJS();
     }
 }
@@ -43,10 +43,9 @@ class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins(
-                            "https://spring-chat-6vbrxvjvd-sambhavkushwaha12-35255-projects.vercel.app"
-                        )
-                        .allowedMethods("*");
+                        .allowedOriginPatterns("https://*.vercel.app")
+                        .allowedMethods("*")
+                        .allowedHeaders("*");
             }
         };
     }
